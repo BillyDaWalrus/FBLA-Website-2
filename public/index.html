@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="#" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>FBLA Page</title>
+  </head>
+  <body>
+    <div id="startMenu">
+      <h1 id="title">FBLA Quiz</h1>
+      <button class="button" id="startButton" onclick="start()">
+        Click here to start
+      </button>
+    </div>
+    <div id="multipleChoice">
+      <div id="qn_container">
+        <h1 id="qn">Question 1:</h1>
+      </div>
+      <h1 class="Question" id="mcQuestion">
+        Question Question Question Question Question Question Question Question
+      </h1>
+      <div class="Choices">
+        <input
+          type="button"
+          class="button"
+          id="mc_A"
+          value="answer1"
+          onclick="answerBTN()"
+        />
+        <input
+          type="button"
+          class="button"
+          id="mc_B"
+          value="answer2"
+          onclick="answerBTN()"
+        />
+        <input
+          type="button"
+          class="button"
+          id="mc_C"
+          value="answer3"
+          onclick="answerBTN()"
+        />
+        <input
+          type="button"
+          class="button"
+          id="mc_D"
+          value="answer4"
+          onclick="answerBTN()"
+        />
+      </div>
+      <button class="nextButton" id="mcNextButton">Next Question</button>
+    </div>
+    <div id="fillBlanks">
+      <div id="qn_container">
+        <h1 id="qn">Question 2:</h1>
+      </div>
+      <div id="fbContainer">
+        <h1 class="fbQuestion" id="part1">FBLA was founded in</h1>
+        <input type="text" id="fbAnswer" value="" />
+        <h1 class="fbQuestion" id="part2">and continues to be great</h1>
+        <button id="fbNextButton">Next Question</button>
+      </div>
+    </div>
+    <div id="trueFalse">
+      <div id="qn_container">
+        <h1 id="qn">Question 3:</h1>
+      </div>
+      <h1 class="Question" id="tfQuestion">
+        Question Question Question Question Question Question Question Question
+      </h1>
+      <div class="Choices">
+        <button onclick="tfAnswerBTN()" class="button" id="True">True</button>
+        <button onclick="tfAnswerBTN()" class="button" id="False">False</button>
+      </div>
+      <button class="nextButton" id="tfNextButton">Next Question</button>
+    </div>
+    <div id="dropDown">
+      <div id="qn_container">
+        <h1 id="qn">Question 4:</h1>
+      </div>
+      <h1 class="Question" id="ddQuestion">
+        Question Question Question Question Question Question Question Question
+      </h1>
+      <div class="dropdown">
+        <input type="button" id="dropButton" value="Answers" />
+        <div id="dropdownContent">
+          <input
+            type="button"
+            onclick="dd_answerBTN()"
+            class="answer"
+            id="A"
+            value="A"
+          />
+          <input
+            type="button"
+            onclick="dd_answerBTN()"
+            class="answer"
+            id="B"
+            value="B"
+          />
+          <input
+            type="button"
+            onclick="dd_answerBTN()"
+            class="answer"
+            id="C"
+            value="C"
+          />
+        </div>
+      </div>
+      <button class="nextButton" id="ddNextButton">Next Question</button>
+    </div>
+    <div id="trueFalse2">
+      <div id="qn_container">
+        <h1 id="qn">Question 5:</h1>
+      </div>
+      <h1 class="Question" id="tf2Question">
+        Question Question Question Question Question Question Question Question
+      </h1>
+      <div class="Choices">
+        <button onclick="tf2answerBTN()" class="button" id="True2">True</button>
+        <button onclick="tf2answerBTN()" class="button" id="False2">False</button>
+      </div>
+      <button class="nextButton" id="tf2NextButton">Next Question</button>
+    </div>
+    </div>
+    <div id="results">
+      <div id="title_container">
+        <h1 id="title">Results:</h1>
+      </div>
+      <div id="main_container">
+        <div id="results_container">
+          <h1 class="results" id="question_number">Question 1:</h1>
+          <h1 class="results" id="q1">this is q1</h1>
+          <br />
+          <h1 class="results" id="question_number">Question 2:</h1>
+          <h1 class="results" id="q2">this is q1</h1>
+          <br />
+          <h1 class="results" id="question_number">Question 3:</h1>
+          <h1 class="results" id="q3">this is q1</h1>
+          <br />
+          <h1 class="results" id="question_number">Question 4:</h1>
+          <h1 class="results" id="q4">this is q1</h1>
+          <br />
+          <h1 class="results" id="question_number">Question 5:</h1>
+          <h1 class="results" id="q5">this is q1</h1>
+          <br />
+        </div>
+        <div id="rectangle"></div>
+        <div id="percentage_container">
+          <h1 class="results">Mark:</h1>
+          <br />
+          <h1 class="results" id="percentage"></h1>
+        </div>
+      </div>
+      <div id="hidden"> <h1 id="hidden-text"> Click to see results </h1> </div>
+      <div id="BTNcontainer">
+        <button class="Button" id="printButton" onclick="window.print()">
+          Print Result
+        </button>
+        <button class="Button" id="resultsNextButton">Try Again</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    function start() {
+      document.getElementById("fbAnswer").value = "";
+      $.ajax({
+        type: "POST",
+        url: "/reset",
+      });
+      document.getElementById("startMenu").style.display = "none";
+      document.getElementById("multipleChoice").style.display = "block";
+    }
+  </script>
+  <script src="js/multipleChoice.js"></script>
+  <script src="js/fillBlank.js"></script>
+  <script src="js/trueFalse.js"></script>
+  <script src="js/dropDown.js"></script>
+  <script src="js/trueFalse2.js"></script>
+  <script src="js/results.js"></script>
+</html>
